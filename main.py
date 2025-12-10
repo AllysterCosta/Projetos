@@ -34,18 +34,15 @@ botao_converter = ctk.CTkButton(
 
 lista_de_moedas = ctk.CTkScrollableFrame(janela)
 
-moeda1 = ctk.CTkLabel(lista_de_moedas, text="USD - Dólar Americano")
-moeda2 = ctk.CTkLabel(lista_de_moedas, text="EUR - Euro")
-moeda3 = ctk.CTkLabel(lista_de_moedas, text="BRL - Real Brasileiro")
-moeda4 = ctk.CTkLabel(lista_de_moedas, text="JPY    - Iene Japonês")
-moeda5 = ctk.CTkLabel(lista_de_moedas, text="GBP - Libra Esterlina")
-moeda6 = ctk.CTkLabel(lista_de_moedas, text="BTC - Bitcoin")
-moeda1.pack()
-moeda2.pack()
-moeda3.pack()
-moeda4.pack()
-moeda5.pack()
-moeda6.pack()
+moedas_disponiveis = ["USD - Dólar Americano",
+                      "EUR - Euro",
+                      "BRL - Real Brasileiro",
+                      "JPY - Iene Japonês",
+                      "GBP - Libra Esterlina",
+                      "BTC - Bitcoin"]
+for moeda in moedas_disponiveis:
+    texto_moeda = ctk.CTkLabel(lista_de_moedas, text=moeda)
+    texto_moeda.pack()
 
 # Criar todos os elementos da interface gráfica
 titulo.pack(padx=10, pady=10)
