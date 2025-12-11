@@ -22,10 +22,17 @@ titulo = ctk.CTkLabel(janela, text="Conversor de Moedas", font=("", 20))
 texto_moeda_origem = ctk.CTkLabel(janela, text="Selecione moeda de Origem")
 texto_moeda_destino = ctk.CTkLabel(janela, text="Selecione moeda de Destino")
 
+
+def carregar_moedas_destino(moeda_selecionada):
+    lista_moedas_destino = dict_conversoes_disponiveis[moeda_selecionada]
+    campo_moeda_destino.configure(values=lista_moedas_destino)
+    campo_moeda_destino.set(lista_moedas_destino[0])
+
+
 campo_moeda_origem = ctk.CTkOptionMenu(
-    janela, values=list(dict_conversoes_disponiveis.keys()))
+    janela, values=list(dict_conversoes_disponiveis.keys()), command=carregar_moedas_destino)
 campo_moeda_destino = ctk.CTkOptionMenu(
-    janela, values=["USD", "EUR", "BRL", "JPY", "GBP", "BTC"])
+    janela, values=["Selecione uma moeda de origem"])
 
 
 def converter_moeda():
