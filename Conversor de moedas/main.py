@@ -7,6 +7,7 @@
 
 import customtkinter as ctk
 from pegar_moedas import nomes_moedas, obter_conversoes
+from pegar_cotacao import pegar_cotacao_moeda
 
 # Criar e configurar a janela principal
 ctk.set_appearance_mode("dark")
@@ -36,13 +37,19 @@ campo_moeda_destino = ctk.CTkOptionMenu(
 
 
 def converter_moeda():
-    print("converter moeda")
+    moeda_origem = campo_moeda_origem.get()
+    moeda_destino = campo_moeda_destino.get()
+    if moeda_origem and moeda_destino:
+        cotacao = pegar_cotacao_moeda(moeda_origem, moeda_destino)
+        texto_cotacao_moeda.configure(text=f"1 {moeda_origem} = {cotacao} {moeda_destino}")
 
 
 botao_converter = ctk.CTkButton(
     janela, text="Converter", command=converter_moeda)
 
 lista_de_moedas = ctk.CTkScrollableFrame(janela)
+
+texto_cotacao_moeda = ctk.CTkLabel(janela, text="")
 
 moedas_disponiveis = nomes_moedas()
 for codigo_moeda in moedas_disponiveis:
@@ -58,6 +65,7 @@ campo_moeda_origem.pack(padx=10)
 texto_moeda_destino.pack(padx=10, pady=3)
 campo_moeda_destino.pack(padx=10)
 botao_converter.pack(padx=10, pady=10)
+texto_cotacao_moeda.pack(padx=10, pady=10)
 lista_de_moedas.pack(padx=10, pady=10, fill="both", expand=True)
 
 # Rodas a janela

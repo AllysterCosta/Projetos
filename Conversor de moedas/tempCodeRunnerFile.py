@@ -1,0 +1,1 @@
+ print(requisicao.json()[f"{moeda_origem}{moeda_destino}"]["bid"])
