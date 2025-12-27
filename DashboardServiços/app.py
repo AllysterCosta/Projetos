@@ -1,6 +1,7 @@
 #  Importando as bibliotecas necessárias
 from services.moedas_service import buscar_moedas
 from services.clima_service import buscar_clima
+from services.noticias_service import buscar_noticias
 from flask import Flask, render_template, jsonify
 from dotenv import load_dotenv
 load_dotenv()
@@ -28,6 +29,11 @@ def api_moedas():
         return buscar_moedas()
     except Exception as e:
         return {"error": str(e)}, 500
+
+
+@app.route("/api/noticias")
+def api_noticias():
+    return buscar_noticias()
 
 
 if __name__ == "__main__":

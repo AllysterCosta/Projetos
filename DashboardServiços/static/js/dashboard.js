@@ -19,5 +19,28 @@ async function carregarMoedas() {
     document.getElementById("usd-brl").innerText = dados.BRL;
     document.getElementById("usd-eur").innerText = dados.EUR;
 }
-
 carregarMoedas();
+
+// Carregando notícias
+async function carregarNoticias() {
+    const res = await fetch("/api/noticias");
+    const noticias = await res.json();
+
+    const lista = document.getElementById("lista-noticias");
+    lista.innerHTML = "";
+
+    if (noticias.erro) {
+        lista.innerHTML = `<li>${noticias.erro}</li>`;
+        return;
+    }
+
+    noticias.forEach(noticia => {
+        const li = document.createElement("li");
+        li.innerHTML = `<a href="${noticia.url}" target="_blank">
+            ${noticia.titulo} <small>(${noticia.fonte})</small>
+        </a>`;
+        lista.appendChild(li);
+    });
+}
+
+carregarNoticias();
